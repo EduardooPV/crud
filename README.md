@@ -42,3 +42,10 @@
 
 ### Step 04: 
   - Refinamento do projeto.
+
+
+### Variaveis de ambiente:
+
+HOST=""
+USER=""
+DATABASE=""
