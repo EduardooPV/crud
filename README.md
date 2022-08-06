@@ -11,6 +11,7 @@
       FROM profissao 
       JOIN usuario 
       ON profissao.id = usuario.profissao_id
+- Adicionar dotenv (Segurança para a conexão com o banco)
 ---
 
 ### Step 02:
@@ -30,6 +31,8 @@
     - PUT/PATCH()
   - Criação da função
     - Update;
+    
+  - Adição do Cors()
   - Frontend
     - Tabela listagem
     - Botão de cadastro
