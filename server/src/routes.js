@@ -71,11 +71,19 @@ router.delete("/usuarios/:id", (request, response) => {
 router.put("/usuarios/:id", getUser, (request, response) => {
   const { usuario } = request;
 
-  const { nome, sobrenome, email } = request.body;
+  // const { nome, sobrenome, email } = request.body;
+  const { nome } = request.body;
+  const { sobrenome } = request.body;
+  const { email } = request.body;
 
-  let sql = `UPDATE usuario nome = ?, sobrenome = ?, email = ? WHERE id = 1`;
+  let sql = `UPDATE usuario SET nome = ?, sobrenome = ?, email = ? WHERE id = ?`;
 
-  const novosDados = [nome, sobrenome, email, usuario.id];
+  const novosDados = [
+    nome ? nome : usuario[0].nome,
+    sobrenome ? sobrenome : usuario[0].sobrenome,
+    email ? email : usuario[0].email,
+    usuario[0].id,
+  ];
 
   db.query(sql, novosDados, (error, data, fields) => {
     if (error) throw error;

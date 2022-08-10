@@ -1,6 +1,11 @@
+import { useState } from "react";
+import { Modal } from "../components/Modal";
+import { TableUsers } from "../components/TableUsers";
 import { useFetch } from "../hooks/useFetch";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const { data, isFetching, error } = useFetch(
     "http://localhost:3333/usuarios"
   );
@@ -12,21 +17,11 @@ export default function Home() {
     <div>
       <h1>Usuários:</h1>
 
-      <div>
-        {data.map((usuario) => (
-          <div
-            style={{
-              border: "1px solid #ccc",
-              padding: "10px 20px",
-              width: "300px",
-            }}
-          >
-            <p>Nome: {usuario.nome}</p>
-            <p>Sobrenome: {usuario.sobrenome}</p>
-            <p>Email: {usuario.email}</p>
-          </div>
-        ))}
-      </div>
+      <button onClick={() => setIsOpen(!isOpen)}>Cadastrar usuário</button>
+
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+
+      <TableUsers users={data} />
     </div>
   );
 }
