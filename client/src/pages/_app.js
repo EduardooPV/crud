@@ -1,11 +1,5 @@
-import { UsersProvider } from "../context/users";
-
 function MyApp({ Component, pageProps }) {
-  return (
-    <UsersProvider>
-      <Component {...pageProps} />
-    </UsersProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

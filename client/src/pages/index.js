@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal } from "../components/Modal";
+import { Modal } from "../components/ModalCreateUser";
 import { TableUsers } from "../components/TableUsers";
 import { useFetch } from "../hooks/useFetch";
 

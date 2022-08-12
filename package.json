@@ -1,0 +1,16 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/EduardooPV/crud.git",
+  "author": "EduardooPV <eduardoveltroni@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "server": "nodemon server/src/server.js",
+    "client": "yarn --cwd client dev",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+  },
+  "dependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

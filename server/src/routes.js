@@ -9,7 +9,7 @@ router.get("/usuarios", (request, response) => {
   let sql = `SELECT * FROM usuario`;
 
   db.query(sql, (error, data, fields) => {
-    if (error) throw err;
+    if (error) throw error;
 
     response.json({
       status: 200,
@@ -97,3 +97,7 @@ router.put("/usuarios/:id", getUser, (request, response) => {
 });
 
 module.exports = router;
+
+// Upload de foto (URL)
+// Autenticação Github
+// Autenticação
