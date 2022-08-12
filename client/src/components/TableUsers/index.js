@@ -1,10 +1,22 @@
-import { api } from "../../service/api";
 import { useState } from "react";
+import { api } from "../../service/api";
+import { useFetch } from "../../hooks/useFetch";
 import { Modal } from "../ModalUpdateUser";
 
-export function TableUsers({ users }) {
+import { AiFillDelete, AiTwotoneEdit } from "react-icons/ai";
+
+import styles from "./styles.module.css";
+
+export function TableUsers() {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({});
+
+  const { data, isFetching, error } = useFetch(
+    "http://localhost:3333/usuarios"
+  );
+
+  if (error) return <div>Error: {error.message}</div>;
+  if (isFetching || !data) return <p>Carregando...</p>;
 
   function handleDeleteUser(UserID) {
     api.delete(`/usuarios/${UserID}`);
@@ -12,25 +24,26 @@ export function TableUsers({ users }) {
 
   return (
     <>
-      <table>
-        <thead>
+      <table className={styles.table}>
+        <thead className={styles.tabletitle}>
           <tr>
             <td>Nome</td>
             <td>Sobrenome</td>
             <td>E-mail</td>
             <td>Profissão ID</td>
+            <td></td>
           </tr>
         </thead>
-        <tbody>
-          {users.map((usuario) => (
+        <tbody className={styles.tablebody}>
+          {data.map((usuario) => (
             <tr key={usuario.id}>
               <td>{usuario.nome}</td>
               <td>{usuario.sobrenome}</td>
               <td>{usuario.email}</td>
               <td>{usuario.profissao_id}</td>
-              <td>
+              <div className={styles.containerButton}>
                 <button onClick={() => handleDeleteUser(usuario.id)}>
-                  Excluir usuário
+                  <AiFillDelete color="red" fontSize={18} />
                 </button>
                 <button
                   onClick={() => {
@@ -38,9 +51,9 @@ export function TableUsers({ users }) {
                     setUser(usuario);
                   }}
                 >
-                  Editar usuário
+                  <AiTwotoneEdit color="white" fontSize={18} />
                 </button>
-              </td>
+              </div>
             </tr>
           ))}
         </tbody>

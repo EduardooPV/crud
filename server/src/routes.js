@@ -21,12 +21,18 @@ router.get("/usuarios", (request, response) => {
 
 // LISTAR USUÁRIO INDIVIDUAL
 router.get("/usuarios/:id", getUser, (request, response) => {
-  const { usuario } = request;
+  const { id } = request.params;
 
-  response.json({
-    status: 200,
-    usuario,
-    message: "Usuario retornado com sucesso!",
+  let sql = "SELECT * FROM usuario WHERE id = ?";
+
+  db.query(sql, id, (error, data, fields) => {
+    if (error) throw error;
+
+    response.json({
+      status: 200,
+      data,
+      message: "Usuario retornado com sucesso!",
+    });
   });
 });
 

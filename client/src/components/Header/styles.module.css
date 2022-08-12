@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  color: var(--light);
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.header button {
+  padding: 12px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: var(--primary);
+  border: 0;
+  border-radius: 5px;
+
+  font-size: 16px;
+  cursor: pointer;
+  transition: filter 0.2s;
+  line-height: 0;
+}
+
+.header button:hover {
+  filter: brightness(0.8);
+}

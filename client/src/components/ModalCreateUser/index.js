@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { api } from "../../service/api";
 
-export function Modal({ isOpen, setIsOpen }) {
+import { AiOutlineClose } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import styles from "./styles.module.css";
+
+export function ModalCreateUser({ isOpen, setIsOpen }) {
   const [confirmAction, setConfirmAction] = useState(false);
 
   const [values, setValues] = useState();
@@ -13,14 +19,24 @@ export function Modal({ isOpen, setIsOpen }) {
     }));
   }
 
-  function handleCreateUser(event) {
-    event.preventDefault();
-    api.post("/usuarios", {
-      nome: values?.nome,
-      sobrenome: values?.sobrenome,
-      email: values?.email,
-      profissao_id: values?.profissao_id,
-    });
+  function handleCreateUser() {
+    api
+      .post("/usuarios", {
+        nome: values?.nome,
+        sobrenome: values?.sobrenome,
+        email: values?.email,
+        profissao_id: values?.profissao_id,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          toast.success("Usuário cadastrado com sucesso!");
+          setIsOpen(false);
+          setConfirmAction(false);
+        }
+      })
+      .catch((err) => {
+        err && toast.error("Não foi possivel cadastrar o usuário");
+      });
   }
 
   function openModal() {
@@ -28,63 +44,84 @@ export function Modal({ isOpen, setIsOpen }) {
   }
 
   function closeModal() {
+    setIsOpen(false);
+  }
+
+  function closeConfirmation() {
     setConfirmAction(false);
   }
 
   return (
     <>
       {isOpen && (
-        <form>
-          <input
-            type="text"
-            name="nome"
-            placeholder="Nome"
-            onChange={handleChangeValues}
-            required
-            minLength={5}
-          />
-          <input
-            type="text"
-            name="sobrenome"
-            placeholder="Sobrenome"
-            onChange={handleChangeValues}
-            minLength={1}
-          />
-          <input
-            type="text"
-            name="email"
-            placeholder="E-mail"
-            onChange={handleChangeValues}
-            minLength={1}
-          />
-          <input
-            type="text"
-            name="profissao_id"
-            placeholder="Profissao_ID"
-            onChange={handleChangeValues}
-            minLength={1}
-          />
+        <form className={styles.container}>
+          <div className={styles.form}>
+            <header>
+              <p>Criar usuário</p>
 
-          <button type="button" onClick={closeModal}>
-            Cancelar
-          </button>
-          <button type="button" onClick={openModal}>
-            Criar usuário
-          </button>
-          {confirmAction && (
-            <>
-              <p>Deseja criar um novo usuário?</p>
-              <button
-                type="submit"
-                onClick={(event) => handleCreateUser(event)}
-              >
-                Criar
+              <button onClick={closeModal}>
+                <AiOutlineClose fontSize={22} />
               </button>
-              <button onClick={closeModal}>Cancelar</button>
-            </>
-          )}
+            </header>
+            <label htmlFor="nome">Nome</label>
+            <input
+              type="text"
+              name="nome"
+              placeholder="Nome"
+              onChange={handleChangeValues}
+              required
+              minLength={5}
+            />
+            <label htmlFor="sobrenome">Sobrenome</label>
+            <input
+              type="text"
+              name="sobrenome"
+              placeholder="Sobrenome"
+              onChange={handleChangeValues}
+              minLength={1}
+            />
+            <label htmlFor="email">E-mail</label>
+            <input
+              type="text"
+              name="email"
+              placeholder="E-mail"
+              onChange={handleChangeValues}
+              minLength={1}
+            />
+            <label htmlFor="profissao_id">Profissão ID</label>
+            <input
+              type="text"
+              name="profissao_id"
+              placeholder="Profissao_ID"
+              onChange={handleChangeValues}
+              minLength={1}
+            />
+
+            <div className={styles.containerButtons}>
+              <button type="button" onClick={closeModal}>
+                Cancelar
+              </button>
+              <button type="button" onClick={openModal}>
+                Criar usuário
+              </button>
+            </div>
+            {confirmAction && (
+              <div className={styles.containerConfirmation}>
+                <div>
+                  <p>Deseja criar o usuário?</p>
+                  <div className={styles.containerButtonsConfirmation}>
+                    <button onClick={closeConfirmation}>Não</button>
+                    <button type="submit" onClick={() => handleCreateUser()}>
+                      Sim
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </form>
       )}
+      <ToastContainer />
     </>
   );
 }

@@ -1,0 +1,159 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.form {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 5px;
+  background: var(--black);
+}
+
+.form header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 40px;
+}
+
+.form header {
+  font-size: 30px;
+  color: white;
+}
+
+.form header button {
+  height: fit-content;
+  padding: 4px;
+
+  border: 2px solid transparent;
+  border-radius: 5px;
+  line-height: 0;
+  flex: 0;
+  background: transparent;
+  color: white;
+
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.form header button:hover {
+  border: 2px solid white;
+}
+
+.form label {
+  color: var(--light);
+  margin-bottom: 4px;
+}
+
+.form input {
+  margin-bottom: 20px;
+  padding: 8px;
+}
+
+.containerButtons {
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.containerButtons button {
+  flex: 1;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.containerButtons button:hover {
+  filter: brightness(0.8);
+}
+
+.containerButtons button:first-child {
+  background: transparent;
+  border: 2px solid var(--error);
+  color: var(--error);
+}
+
+.containerButtons button:last-child {
+  background: var(--primary);
+  color: var(--black);
+}
+
+.containerConfirmation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.containerConfirmation > div {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 5px;
+  background: var(--black);
+}
+
+.containerConfirmation p {
+  margin-bottom: 40px;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
+.containerButtonsConfirmation {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.containerButtonsConfirmation button {
+  flex: 1;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.containerButtonsConfirmation button:hover {
+  filter: brightness(0.8);
+}
+
+.containerButtonsConfirmation button:first-child {
+  background: transparent;
+  border: 2px solid var(--error);
+  color: var(--error);
+}
+
+.containerButtonsConfirmation button:last-child {
+  background: var(--primary);
+  color: var(--black);
+}
