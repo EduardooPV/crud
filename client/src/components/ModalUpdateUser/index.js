@@ -12,7 +12,7 @@ export function Modal({ isOpen, setIsOpen, user }) {
   const [profissaoId, setProfissaoId] = useState("");
 
   useEffect(() => {
-    api.get(`/usuarios/${user.id}`).then((response) => {
+    api.get(`/usuarios/${user.email}`).then((response) => {
       const data = response.data.data[0];
 
       if (data) {
@@ -26,7 +26,7 @@ export function Modal({ isOpen, setIsOpen, user }) {
 
   function handleEditUser(event) {
     event.preventDefault();
-    api.put(`/usuarios/${user.id}`, {
+    api.put(`/usuarios/${user.email}`, {
       nome: nome,
       sobrenome: sobrenome,
       email: email,
@@ -60,8 +60,6 @@ export function Modal({ isOpen, setIsOpen, user }) {
               placeholder="Nome"
               onChange={(event) => setNome(event.target.value)}
               value={nome}
-              required
-              minLength={5}
             />
             <label htmlFor="sobrenome">Sobrenome</label>
             <input
@@ -70,7 +68,6 @@ export function Modal({ isOpen, setIsOpen, user }) {
               onChange={(event) => setSobrenome(event.target.value)}
               value={sobrenome}
               placeholder="Sobrenome"
-              minLength={1}
             />
             <label htmlFor="email">E-mail</label>
             <input
@@ -79,7 +76,6 @@ export function Modal({ isOpen, setIsOpen, user }) {
               value={email}
               placeholder="E-mail"
               onChange={(event) => setEmail(event.target.value)}
-              minLength={1}
             />
             <label htmlFor="profissao_id">Profissão ID</label>
             <input
@@ -88,7 +84,6 @@ export function Modal({ isOpen, setIsOpen, user }) {
               value={profissaoId}
               placeholder="Profissao_ID"
               onChange={(event) => setProfissaoId(event.target.value)}
-              minLength={1}
             />
             <div className={styles.containerButtons}>
               <button type="button" onClick={closeModal}>

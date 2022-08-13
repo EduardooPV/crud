@@ -69,8 +69,6 @@ export function ModalCreateUser({ isOpen, setIsOpen }) {
               name="nome"
               placeholder="Nome"
               onChange={handleChangeValues}
-              required
-              minLength={5}
             />
             <label htmlFor="sobrenome">Sobrenome</label>
             <input
@@ -78,7 +76,6 @@ export function ModalCreateUser({ isOpen, setIsOpen }) {
               name="sobrenome"
               placeholder="Sobrenome"
               onChange={handleChangeValues}
-              minLength={1}
             />
             <label htmlFor="email">E-mail</label>
             <input
@@ -86,7 +83,6 @@ export function ModalCreateUser({ isOpen, setIsOpen }) {
               name="email"
               placeholder="E-mail"
               onChange={handleChangeValues}
-              minLength={1}
             />
             <label htmlFor="profissao_id">Profissão ID</label>
             <input
@@ -94,7 +90,6 @@ export function ModalCreateUser({ isOpen, setIsOpen }) {
               name="profissao_id"
               placeholder="Profissao_ID"
               onChange={handleChangeValues}
-              minLength={1}
             />
 
             <div className={styles.containerButtons}>

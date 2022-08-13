@@ -18,8 +18,8 @@ export function TableUsers() {
   if (error) return <div>Error: {error.message}</div>;
   if (isFetching || !data) return <p>Carregando...</p>;
 
-  function handleDeleteUser(UserID) {
-    api.delete(`/usuarios/${UserID}`);
+  function handleDeleteUser(userEmail) {
+    api.delete(`/usuarios/${userEmail}`);
   }
 
   return (
@@ -41,8 +41,8 @@ export function TableUsers() {
               <td>{usuario.sobrenome}</td>
               <td>{usuario.email}</td>
               <td>{usuario.profissao_id}</td>
-              <div className={styles.containerButton}>
-                <button onClick={() => handleDeleteUser(usuario.id)}>
+              <td className={styles.containerButton}>
+                <button onClick={() => handleDeleteUser(usuario.email)}>
                   <AiFillDelete color="red" fontSize={18} />
                 </button>
                 <button
@@ -53,7 +53,7 @@ export function TableUsers() {
                 >
                   <AiTwotoneEdit color="white" fontSize={18} />
                 </button>
-              </div>
+              </td>
             </tr>
           ))}
         </tbody>
